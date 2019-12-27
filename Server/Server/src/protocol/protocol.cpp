@@ -43,7 +43,7 @@ namespace server::protocol
 			{
 				if (::closesocket(socket) == SOCKET_ERROR)
 				{
-					log(__FILE__, __FUNCTION__, __LINE__);
+					log::log(__FILE__, __FUNCTION__, __LINE__);
 				}
 			}
 		}
@@ -52,12 +52,12 @@ namespace server::protocol
 		{
 			if (::closesocket(server) == SOCKET_ERROR)
 			{
-				log(__FILE__, __FUNCTION__, __LINE__);
+				log::log(__FILE__, __FUNCTION__, __LINE__);
 			}
 
 			if (::WSACleanup() != NO_ERROR)
 			{
-				log(__FILE__, __FUNCTION__, __LINE__);
+				log::log(__FILE__, __FUNCTION__, __LINE__);
 			}
 		}
 	}
@@ -66,7 +66,7 @@ namespace server::protocol
 	{
 		if (initialized)
 		{
-			log(__FILE__, __FUNCTION__, __LINE__);
+			log::log(__FILE__, __FUNCTION__, __LINE__);
 
 			return false;
 		}
@@ -74,7 +74,7 @@ namespace server::protocol
 		WSADATA wsadata;
 		if (::WSAStartup(MAKEWORD(2, 2), &wsadata) != NO_ERROR)
 		{
-			log(__FILE__, __FUNCTION__, __LINE__);
+			log::log(__FILE__, __FUNCTION__, __LINE__);
 
 			return false;
 		}
@@ -82,7 +82,7 @@ namespace server::protocol
 		server = ::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 		if (server == INVALID_SOCKET)
 		{
-			log(__FILE__, __FUNCTION__, __LINE__);
+			log::log(__FILE__, __FUNCTION__, __LINE__);
 
 			return false;
 		}
@@ -90,7 +90,7 @@ namespace server::protocol
 		u_long mode = 1;
 		if (::ioctlsocket(server, FIONBIO, &mode) == SOCKET_ERROR)
 		{
-			log(__FILE__, __FUNCTION__, __LINE__);
+			log::log(__FILE__, __FUNCTION__, __LINE__);
 
 			return false;
 		}
@@ -104,7 +104,7 @@ namespace server::protocol
 	{
 		if (!initialized || started)
 		{
-			log(__FILE__, __FUNCTION__, __LINE__);
+			log::log(__FILE__, __FUNCTION__, __LINE__);
 
 			return false;
 		}
@@ -116,14 +116,14 @@ namespace server::protocol
 
 		if (::bind(server, (SOCKADDR*)& addr, sizeof(addr)) == SOCKET_ERROR)
 		{
-			log(__FILE__, __FUNCTION__, __LINE__);
+			log::log(__FILE__, __FUNCTION__, __LINE__);
 
 			return false;
 		}
 
 		if (::listen(server, SOMAXCONN) == SOCKET_ERROR)
 		{
-			log(__FILE__, __FUNCTION__, __LINE__);
+			log::log(__FILE__, __FUNCTION__, __LINE__);
 
 			return false;
 		}
@@ -140,7 +140,7 @@ namespace server::protocol
 	{
 		if (!started)
 		{
-			log(__FILE__, __FUNCTION__, __LINE__);
+			log::log(__FILE__, __FUNCTION__, __LINE__);
 
 			return false;
 		}
@@ -156,7 +156,7 @@ namespace server::protocol
 	{
 		if (!started)
 		{
-			log(__FILE__, __FUNCTION__, __LINE__);
+			log::log(__FILE__, __FUNCTION__, __LINE__);
 
 			return false;
 		}
@@ -228,7 +228,7 @@ namespace server::protocol
 				{
 					if (::send(client, package.get_buffer().data(), static_cast<int>(package.get_buffer().size()), 0) == SOCKET_ERROR)
 					{
-						log(__FILE__, __FUNCTION__, __LINE__);
+						log::log(__FILE__, __FUNCTION__, __LINE__);
 					}
 				}
 

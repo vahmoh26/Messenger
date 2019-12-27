@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-namespace server::protocol
+namespace server::log
 {
 	using namespace std;
 
