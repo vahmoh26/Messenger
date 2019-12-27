@@ -13,10 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\protocol">
+      <UniqueIdentifier>{cc0b6561-94e0-4b15-9035-9a2bf53ca271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\protocol\package">
+      <UniqueIdentifier>{970c4cc4-cfb9-427f-8b70-7f6cf716e1a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\config">
+      <UniqueIdentifier>{3723cafd-ba31-4b91-8817-07cf72d38625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\log">
+      <UniqueIdentifier>{84667e2e-8723-4153-94ab-42a471ec42a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\protocol\protocol.cpp">
+      <Filter>Source Files\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\package\package.cpp">
+      <Filter>Source Files\protocol\package</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\protocol\protocol.h">
+      <Filter>Source Files\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protocol\package\package.h">
+      <Filter>Source Files\protocol\package</Filter>
+    </ClInclude>
+    <ClInclude Include="src\config\config.h">
+      <Filter>Source Files\config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\log\log.h">
+      <Filter>Source Files\log</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
