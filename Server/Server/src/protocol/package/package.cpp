@@ -35,15 +35,4 @@ namespace server::protocol
 	{
 		return _buffer;
 	}
-
-	void package::clear()
-	{
-		_ip.clear();
-		_buffer.clear();
-	}
-
-	bool package::empty()
-	{
-		return _ip.empty() || _buffer.empty();
-	}
 }

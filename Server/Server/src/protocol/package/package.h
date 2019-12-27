@@ -20,9 +20,6 @@ namespace server::protocol
 		const string& get_ip();
 		const vector<char>& get_buffer();
 
-		void clear();
-		bool empty();
-
 	private:
 		string _ip;
 		vector<char> _buffer;

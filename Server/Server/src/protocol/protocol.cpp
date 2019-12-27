@@ -1,6 +1,7 @@
 #include "protocol.h"
 
 #include <mutex>
+#include <optional>
 
 #include <ws2tcpip.h>
 
@@ -206,7 +207,7 @@ namespace server::protocol
 
 	void protocol::send_thread_func()
 	{
-		package package;
+		optional<package> package;
 		SOCKET client;
 
 		while (!send_thread_stop)
@@ -221,18 +222,18 @@ namespace server::protocol
 
 			send_packages_mutex.unlock();
 
-			if (!package.empty())
+			if (package.has_value())
 			{
-				client = ip_to_socket(package.get_ip());
+				client = ip_to_socket(package.value().get_ip());
 				if (client != INVALID_SOCKET)
 				{
-					if (::send(client, package.get_buffer().data(), static_cast<int>(package.get_buffer().size()), 0) == SOCKET_ERROR)
+					if (::send(client, package.value().get_buffer().data(), static_cast<int>(package.value().get_buffer().size()), 0) == SOCKET_ERROR)
 					{
 						log::log(__FILE__, __FUNCTION__, __LINE__);
 					}
 				}
 
-				package.clear();
+				package.reset();
 			}
 		}
 	}
