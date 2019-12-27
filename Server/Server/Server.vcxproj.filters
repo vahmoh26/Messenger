@@ -25,6 +25,18 @@
     <Filter Include="Source Files\log">
       <UniqueIdentifier>{84667e2e-8723-4153-94ab-42a471ec42a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{332cd812-4617-49de-91d5-b10bf44ccad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\service">
+      <UniqueIdentifier>{0a9d5dd5-fcbd-4498-9620-f3820ad6168e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\service\request">
+      <UniqueIdentifier>{67d19a06-0603-4b65-b734-8330d9b1de42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\service\response">
+      <UniqueIdentifier>{53a96dde-1645-43c8-917d-9774a2a54e70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -35,6 +47,15 @@
     </ClCompile>
     <ClCompile Include="src\protocol\package\package.cpp">
       <Filter>Source Files\protocol\package</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\core.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\service\request\request.cpp">
+      <Filter>Source Files\core\service\request</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\service\response\response.cpp">
+      <Filter>Source Files\core\service\response</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +70,18 @@
     </ClInclude>
     <ClInclude Include="src\log\log.h">
       <Filter>Source Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\core.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\service\service.h">
+      <Filter>Source Files\core\service</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\service\request\request.h">
+      <Filter>Source Files\core\service\request</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\service\response\response.h">
+      <Filter>Source Files\core\service\response</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

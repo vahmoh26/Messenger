@@ -4,8 +4,13 @@
 
 namespace server::config
 {
+	namespace core
+	{
+		constexpr uint16_t service_threads_number = 3;
+	}
+
 	namespace protocol
 	{
-		uint16_t port = 6533;
+		constexpr uint16_t port = 6533;
 	}
 }

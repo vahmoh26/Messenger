@@ -150,12 +150,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\core.cpp" />
+    <ClCompile Include="src\core\service\request\request.cpp" />
+    <ClCompile Include="src\core\service\response\response.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\protocol\package\package.cpp" />
     <ClCompile Include="src\protocol\protocol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config\config.h" />
+    <ClInclude Include="src\core\core.h" />
+    <ClInclude Include="src\core\service\request\request.h" />
+    <ClInclude Include="src\core\service\response\response.h" />
+    <ClInclude Include="src\core\service\service.h" />
     <ClInclude Include="src\log\log.h" />
     <ClInclude Include="src\protocol\package\package.h" />
     <ClInclude Include="src\protocol\protocol.h" />

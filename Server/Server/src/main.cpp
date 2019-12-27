@@ -1,11 +1,11 @@
-#include <protocol/protocol.h>
+#include <core/core.h>
 
 int main(int argc, char* argv[])
 {
-	server::protocol::protocol protocol;
+	server::core::core core;
 
-	protocol.initialize();
-	protocol.start();
+	core.initialize();
+	core.start();
 
 	while (true);
 
