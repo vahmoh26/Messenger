@@ -151,8 +151,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\core\core.cpp" />
-    <ClCompile Include="src\core\request\request.cpp" />
-    <ClCompile Include="src\core\response\response.cpp" />
+    <ClCompile Include="src\core\item\item.cpp" />
+    <ClCompile Include="src\core\service\service.cpp" />
     <ClCompile Include="src\database\database.cpp" />
     <ClCompile Include="src\init\init.cpp" />
     <ClCompile Include="src\log\log.cpp" />
@@ -163,8 +163,8 @@
   <ItemGroup>
     <ClInclude Include="src\config\config.h" />
     <ClInclude Include="src\core\core.h" />
-    <ClInclude Include="src\core\request\request.h" />
-    <ClInclude Include="src\core\response\response.h" />
+    <ClInclude Include="src\core\item\item.h" />
+    <ClInclude Include="src\core\service\service.h" />
     <ClInclude Include="src\database\database.h" />
     <ClInclude Include="src\init\init.h" />
     <ClInclude Include="src\log\log.h" />

@@ -6,8 +6,7 @@
 #include <database/database.h>
 #include <protocol/protocol.h>
 
-#include "request/request.h"
-#include "response/response.h"
+#include "item/item.h"
 
 namespace server::core
 {
@@ -29,9 +28,6 @@ namespace server::core
 		void request_thread_func();
 		void response_thread_func();
 
-		static void login(const database::database& database, const request& request, response& response);
-		static void logout(const database::database& database, const request& request, response& response);
-
 		bool initialized;
 		bool started;
 		bool terminated;
@@ -43,7 +39,7 @@ namespace server::core
 		atomic_bool response_thread_stop;
 		array<database::database, config::core::service_threads_number> databases;
 		protocol::protocol protocol;
-		queue<request> requests;
-		queue<response> responses;
+		queue<item> request_items;
+		queue<item> response_items;
 	};
 }

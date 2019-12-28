@@ -31,14 +31,14 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{03f44b47-c283-466d-920a-d26bb1009b10}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\request">
-      <UniqueIdentifier>{68adcd94-dd39-4924-a869-de58e935bbb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\response">
-      <UniqueIdentifier>{09bc644f-d876-4f17-8f00-3b78c98a0f86}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\init">
       <UniqueIdentifier>{1be49d41-f29a-4fbf-806c-120c6c5c0c35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\item">
+      <UniqueIdentifier>{18c2adb2-46c3-4146-8cf7-73ba71039bdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\service">
+      <UniqueIdentifier>{4d81b528-95a5-4f9f-8352-201cf774be92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,14 +60,14 @@
     <ClCompile Include="src\database\database.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\request\request.cpp">
-      <Filter>Source Files\core\request</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\response\response.cpp">
-      <Filter>Source Files\core\response</Filter>
-    </ClCompile>
     <ClCompile Include="src\init\init.cpp">
       <Filter>Source Files\init</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\item\item.cpp">
+      <Filter>Source Files\core\item</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\service\service.cpp">
+      <Filter>Source Files\core\service</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,14 +89,14 @@
     <ClInclude Include="src\database\database.h">
       <Filter>Source Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\request\request.h">
-      <Filter>Source Files\core\request</Filter>
-    </ClInclude>
-    <ClInclude Include="src\core\response\response.h">
-      <Filter>Source Files\core\response</Filter>
-    </ClInclude>
     <ClInclude Include="src\init\init.h">
       <Filter>Source Files\init</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\item\item.h">
+      <Filter>Source Files\core\item</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\service\service.h">
+      <Filter>Source Files\core\service</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

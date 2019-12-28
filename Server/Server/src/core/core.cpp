@@ -5,10 +5,12 @@
 
 #include <log/log.h>
 
+#include "service/service.h"
+
 namespace server::core
 {
-	mutex requests_mutex;
-	mutex responses_mutex;
+	mutex request_items_mutex;
+	mutex response_items_mutex;
 
 	core::core()
 	{
@@ -142,40 +144,40 @@ namespace server::core
 	{
 		auto& database = databases[index];
 
-		optional<request> request;
-		response response;
+		optional<item> request_item;
+		item response_item;
 
 		while (!service_threads_stop)
 		{
-			requests_mutex.lock();
+			request_items_mutex.lock();
 
-			if (!requests.empty())
+			if (!request_items.empty())
 			{
-				request = requests.front();
-				requests.pop();
+				request_item = request_items.front();
+				request_items.pop();
 			}
 
-			requests_mutex.unlock();
+			request_items_mutex.unlock();
 
-			if (request.has_value() && request.value().valid())
+			if (request_item.has_value() && request_item.value().valid())
 			{
-				switch (request.value().get_type())
+				switch (request_item.value().get_type())
 				{
-				case request::type::login:
-					login(database, request.value(), response);
+				case item::type::login:
+					login(database, request_item.value(), response_item);
 					break;
-				case request::type::logout:
-					logout(database, request.value(), response);
+				case item::type::logout:
+					logout(database, request_item.value(), response_item);
 					break;
 				default:
 					break;
 				}
 
-				responses_mutex.lock();
-				responses.push(response);
-				responses_mutex.unlock();
+				response_items_mutex.lock();
+				response_items.push(response_item);
+				response_items_mutex.unlock();
 
-				request.reset();
+				request_item.reset();
 			}
 		}
 	}
@@ -190,9 +192,9 @@ namespace server::core
 			{
 				while (!packages.empty())
 				{
-					requests_mutex.lock();
-					requests.push(request::from_package(packages.front()));
-					requests_mutex.unlock();
+					request_items_mutex.lock();
+					request_items.push(item(packages.front()));
+					request_items_mutex.unlock();
 
 					packages.pop();
 				}
@@ -202,34 +204,26 @@ namespace server::core
 
 	void core::response_thread_func()
 	{
-		optional<response> response;
+		optional<item> response_item;
 
 		while (!response_thread_stop)
 		{
-			responses_mutex.lock();
+			response_items_mutex.lock();
 
-			if (!responses.empty())
+			if (!response_items.empty())
 			{
-				response = responses.front();
-				responses.pop();
+				response_item = response_items.front();
+				response_items.pop();
 			}
 
-			responses_mutex.unlock();
+			response_items_mutex.unlock();
 
-			if (response.has_value())
+			if (response_item.has_value())
 			{
-				protocol.send(response::to_package(response.value()));
+				protocol.send(response_item.value().to_package());
 
-				response.reset();
+				response_item.reset();
 			}
 		}
-	}
-
-	void core::login(const database::database& database, const request& request, response& response)
-	{
-	}
-
-	void core::logout(const database::database& database, const request& request, response& response)
-	{
 	}
 }

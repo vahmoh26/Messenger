@@ -4,7 +4,7 @@
 
 namespace server::core
 {
-	class request
+	class item
 	{
 	public:
 		enum class type
@@ -14,9 +14,10 @@ namespace server::core
 			logout
 		};
 
-		request();
-		request(type type);
-		~request();
+		item();
+		item(type type);
+		item(const protocol::package& package);
+		~item();
 
 		void set_type(type type);
 
@@ -24,7 +25,7 @@ namespace server::core
 
 		bool valid();
 
-		static request from_package(const protocol::package& package);
+		virtual protocol::package to_package();
 
 	private:
 		type _type;
