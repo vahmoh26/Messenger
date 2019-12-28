@@ -3,9 +3,11 @@
 #include <array>
 
 #include <config/config.h>
+#include <database/database.h>
 #include <protocol/protocol.h>
 
-#include "service/service.h"
+#include "request/request.h"
+#include "response/response.h"
 
 namespace server::core
 {
@@ -21,9 +23,12 @@ namespace server::core
 		bool start();
 
 	private:
-		void service_thread_func();
+		void service_thread_func(uint16_t index);
 		void request_thread_func();
 		void response_thread_func();
+
+		static void login(const database::database& database, const request& request, response& response);
+		static void logout(const database::database& database, const request& request, response& response);
 
 		bool initialized;
 		bool started;
@@ -33,6 +38,7 @@ namespace server::core
 		atomic_bool service_threads_stop;
 		atomic_bool request_thread_stop;
 		atomic_bool response_thread_stop;
+		array<database::database, config::core::service_threads_number> databases;
 		protocol::protocol protocol;
 		queue<request> requests;
 		queue<response> responses;

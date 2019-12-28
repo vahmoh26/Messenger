@@ -56,6 +56,16 @@ namespace server::core
 			return false;
 		}
 
+		for (auto& database : databases)
+		{
+			if (!database.open())
+			{
+				log::log(__FILE__, __FUNCTION__, __LINE__);
+
+				return false;
+			}
+		}
+
 		if (!protocol.initialize())
 		{
 			log::log(__FILE__, __FUNCTION__, __LINE__);
@@ -86,7 +96,7 @@ namespace server::core
 
 		for (auto& service_thread : service_threads)
 		{
-			service_thread = thread(&core::service_thread_func, this);
+			service_thread = thread(&core::service_thread_func, this, static_cast<uint16_t>(&service_thread - &service_threads[0]));
 		}
 
 		request_thread = thread(&core::request_thread_func, this);
@@ -97,8 +107,10 @@ namespace server::core
 		return true;
 	}
 
-	void core::service_thread_func()
+	void core::service_thread_func(uint16_t index)
 	{
+		auto& database = databases[index];
+
 		optional<request> request;
 		response response;
 
@@ -119,10 +131,10 @@ namespace server::core
 				switch (request.value().get_type())
 				{
 				case request::type::login:
-					login(request.value(), response);
+					login(database, request.value(), response);
 					break;
 				case request::type::logout:
-					logout(request.value(), response);
+					logout(database, request.value(), response);
 					break;
 				default:
 					break;
@@ -180,5 +192,13 @@ namespace server::core
 				response.reset();
 			}
 		}
+	}
+
+	void core::login(const database::database& database, const request& request, response& response)
+	{
+	}
+
+	void core::logout(const database::database& database, const request& request, response& response)
+	{
 	}
 }
