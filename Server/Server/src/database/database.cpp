@@ -17,7 +17,7 @@ namespace server::database
 	{
 		if (opened)
 		{
-			log::log(__FILE__, __FUNCTION__, __LINE__);
+			LOG();
 
 			return false;
 		}

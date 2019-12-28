@@ -51,7 +51,7 @@ namespace server::core
 	{
 		if (initialized)
 		{
-			log::log(__FILE__, __FUNCTION__, __LINE__);
+			LOG();
 
 			return false;
 		}
@@ -60,15 +60,16 @@ namespace server::core
 		{
 			if (!database.open())
 			{
-				log::log(__FILE__, __FUNCTION__, __LINE__);
+				LOG();
 
 				return false;
 			}
 		}
 
+
 		if (!protocol.initialize())
 		{
-			log::log(__FILE__, __FUNCTION__, __LINE__);
+			LOG();
 
 			return false;
 		}
@@ -82,14 +83,14 @@ namespace server::core
 	{
 		if (!initialized || started)
 		{
-			log::log(__FILE__, __FUNCTION__, __LINE__);
+			LOG();
 
 			return false;
 		}
 
 		if (!protocol.start())
 		{
-			log::log(__FILE__, __FUNCTION__, __LINE__);
+			LOG();
 
 			return false;
 		}
