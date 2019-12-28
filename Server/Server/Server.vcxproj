@@ -153,6 +153,8 @@
     <ClCompile Include="src\core\core.cpp" />
     <ClCompile Include="src\core\service\request\request.cpp" />
     <ClCompile Include="src\core\service\response\response.cpp" />
+    <ClCompile Include="src\core\service\service.cpp" />
+    <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\protocol\package\package.cpp" />
     <ClCompile Include="src\protocol\protocol.cpp" />

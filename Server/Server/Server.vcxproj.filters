@@ -57,6 +57,12 @@
     <ClCompile Include="src\core\service\response\response.cpp">
       <Filter>Source Files\core\service\response</Filter>
     </ClCompile>
+    <ClCompile Include="src\log\log.cpp">
+      <Filter>Source Files\log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\service\service.cpp">
+      <Filter>Source Files\core\service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\protocol\protocol.h">

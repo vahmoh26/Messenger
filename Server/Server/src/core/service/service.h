@@ -5,11 +5,6 @@
 
 namespace server::core
 {
-	static void login(const request& request, response& response)
-	{
-	}
-
-	static void logout(const request& request, response& response)
-	{
-	}
+	void login(const request& request, response& response);
+	void logout(const request& request, response& response);
 }
