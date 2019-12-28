@@ -22,6 +22,8 @@ namespace server::core
 		bool initialize();
 		bool start();
 
+		bool terminate();
+
 	private:
 		void service_thread_func(uint16_t index);
 		void request_thread_func();
@@ -32,6 +34,7 @@ namespace server::core
 
 		bool initialized;
 		bool started;
+		bool terminated;
 		array<thread, config::core::service_threads_number> service_threads;
 		thread request_thread;
 		thread response_thread;

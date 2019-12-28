@@ -1,5 +1,7 @@
 #include "log.h"
 
+#include <iostream>
+
 namespace server::log
 {
 	void log(const string& file, const string& function, int line)

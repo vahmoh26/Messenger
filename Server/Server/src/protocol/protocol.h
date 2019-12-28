@@ -22,6 +22,8 @@ namespace server::protocol
 		bool initialize();
 		bool start();
 
+		bool terminate();
+
 		bool receive(queue<package>& packages);
 		bool send(const package& package);
 
@@ -35,6 +37,7 @@ namespace server::protocol
 
 		bool initialized;
 		bool started;
+		bool terminated;
 		thread receive_thread;
 		thread send_thread;
 		atomic_bool receive_thread_stop;

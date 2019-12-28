@@ -18,6 +18,7 @@ namespace server::protocol
 	{
 		initialized = false;
 		started = false;
+		terminated = false;
 		receive_thread_stop = false;
 		send_thread_stop = false;
 		server = INVALID_SOCKET;
@@ -25,47 +26,11 @@ namespace server::protocol
 
 	protocol::~protocol()
 	{
-		if (started)
-		{
-			receive_thread_stop = true;
-			send_thread_stop = true;
-
-			if (receive_thread.joinable())
-			{
-				receive_thread.join();
-			}
-
-			if (send_thread.joinable())
-			{
-				send_thread.join();
-			}
-
-			for (auto const& [ip, socket] : clients)
-			{
-				if (::closesocket(socket) == SOCKET_ERROR)
-				{
-					LOG();
-				}
-			}
-		}
-
-		if (initialized)
-		{
-			if (::closesocket(server) == SOCKET_ERROR)
-			{
-				LOG();
-			}
-
-			if (::WSACleanup() != NO_ERROR)
-			{
-				LOG();
-			}
-		}
 	}
 
 	bool protocol::initialize()
 	{
-		if (initialized)
+		if (initialized || terminated)
 		{
 			LOG();
 
@@ -135,6 +100,58 @@ namespace server::protocol
 		started = true;
 
 		return true;
+	}
+
+	bool protocol::terminate()
+	{
+		auto result = true;
+
+		if (started)
+		{
+			receive_thread_stop = true;
+			send_thread_stop = true;
+
+			if (receive_thread.joinable())
+			{
+				receive_thread.join();
+			}
+
+			if (send_thread.joinable())
+			{
+				send_thread.join();
+			}
+
+			for (auto const& [ip, socket] : clients)
+			{
+				if (::closesocket(socket) == SOCKET_ERROR)
+				{
+					result = false;
+
+					LOG();
+				}
+			}
+		}
+
+		if (initialized)
+		{
+			if (::closesocket(server) == SOCKET_ERROR)
+			{
+				result = false;
+
+				LOG();
+			}
+
+			if (::WSACleanup() != NO_ERROR)
+			{
+				result = false;
+
+				LOG();
+			}
+		}
+
+		terminated = true;
+
+		return result;
 	}
 
 	bool protocol::receive(queue<package>& packages)

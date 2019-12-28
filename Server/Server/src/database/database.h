@@ -9,6 +9,7 @@ namespace server::database
 		~database();
 
 		bool open();
+		bool close();
 
 	private:
 		bool opened;

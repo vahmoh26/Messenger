@@ -154,6 +154,7 @@
     <ClCompile Include="src\core\request\request.cpp" />
     <ClCompile Include="src\core\response\response.cpp" />
     <ClCompile Include="src\database\database.cpp" />
+    <ClCompile Include="src\init\init.cpp" />
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\protocol\package\package.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\core\request\request.h" />
     <ClInclude Include="src\core\response\response.h" />
     <ClInclude Include="src\database\database.h" />
+    <ClInclude Include="src\init\init.h" />
     <ClInclude Include="src\log\log.h" />
     <ClInclude Include="src\protocol\package\package.h" />
     <ClInclude Include="src\protocol\protocol.h" />

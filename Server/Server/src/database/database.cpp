@@ -22,6 +22,20 @@ namespace server::database
 			return false;
 		}
 
+		opened = true;
+
+		return true;
+	}
+
+	bool database::close()
+	{
+		if (!opened)
+		{
+			LOG();
+
+			return false;
+		}
+
 		return true;
 	}
 }

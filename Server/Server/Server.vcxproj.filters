@@ -37,6 +37,9 @@
     <Filter Include="Source Files\core\response">
       <UniqueIdentifier>{09bc644f-d876-4f17-8f00-3b78c98a0f86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\init">
+      <UniqueIdentifier>{1be49d41-f29a-4fbf-806c-120c6c5c0c35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -63,6 +66,9 @@
     <ClCompile Include="src\core\response\response.cpp">
       <Filter>Source Files\core\response</Filter>
     </ClCompile>
+    <ClCompile Include="src\init\init.cpp">
+      <Filter>Source Files\init</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\protocol\protocol.h">
@@ -88,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="src\core\response\response.h">
       <Filter>Source Files\core\response</Filter>
+    </ClInclude>
+    <ClInclude Include="src\init\init.h">
+      <Filter>Source Files\init</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

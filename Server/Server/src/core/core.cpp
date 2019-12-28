@@ -14,6 +14,7 @@ namespace server::core
 	{
 		initialized = false;
 		started = false;
+		terminated = false;
 		service_threads_stop = false;
 		request_thread_stop = false;
 		response_thread_stop = false;
@@ -21,35 +22,11 @@ namespace server::core
 
 	core::~core()
 	{
-		if (started)
-		{
-			service_threads_stop = true;
-			request_thread_stop = true;
-			response_thread_stop = true;
-
-			for (auto& service_thread : service_threads)
-			{
-				if (service_thread.joinable())
-				{
-					service_thread.join();
-				}
-			}
-
-			if (request_thread.joinable())
-			{
-				request_thread.join();
-			}
-
-			if (response_thread.joinable())
-			{
-				response_thread.join();
-			}
-		}
 	}
 
 	bool core::initialize()
 	{
-		if (initialized)
+		if (initialized || terminated)
 		{
 			LOG();
 
@@ -65,7 +42,6 @@ namespace server::core
 				return false;
 			}
 		}
-
 
 		if (!protocol.initialize())
 		{
@@ -106,6 +82,60 @@ namespace server::core
 		started = true;
 
 		return true;
+	}
+
+	bool core::terminate()
+	{
+		auto result = true;
+
+		if (started)
+		{
+			service_threads_stop = true;
+			request_thread_stop = true;
+			response_thread_stop = true;
+
+			for (auto& service_thread : service_threads)
+			{
+				if (service_thread.joinable())
+				{
+					service_thread.join();
+				}
+			}
+
+			if (request_thread.joinable())
+			{
+				request_thread.join();
+			}
+
+			if (response_thread.joinable())
+			{
+				response_thread.join();
+			}
+		}
+
+		if (initialized)
+		{
+			if (!protocol.terminate())
+			{
+				result = false;
+
+				LOG();
+			}
+
+			for (auto& database : databases)
+			{
+				if (!database.close())
+				{
+					LOG();
+
+					result = false;
+				}
+			}
+		}
+
+		terminated = true;
+
+		return result;
 	}
 
 	void core::service_thread_func(uint16_t index)
