@@ -176,7 +176,7 @@ namespace server::protocol
 		int addr_size = sizeof(addr);
 
 		int recv;
-		char buffer[1024];
+		char buffer[config::protocol::buffer_size];
 
 		while (!receive_thread_stop)
 		{
@@ -192,7 +192,7 @@ namespace server::protocol
 
 			for (auto const& [ip, socket] : clients)
 			{
-				recv = ::recv(socket, buffer, 1024, 0);
+				recv = ::recv(socket, buffer, static_cast<int>(config::protocol::buffer_size), 0);
 				if (recv > 0)
 				{
 					receive_packages_mutex.lock();

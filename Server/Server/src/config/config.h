@@ -12,5 +12,6 @@ namespace server::config
 	namespace protocol
 	{
 		constexpr uint16_t port = 6533;
+		constexpr uint16_t buffer_size = 1024;
 	}
 }
