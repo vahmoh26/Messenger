@@ -17,8 +17,8 @@ namespace server::protocol
 		void set_ip(const string& ip);
 		void set_buffer(const vector<char>& buffer);
 
-		const string& get_ip();
-		const vector<char>& get_buffer();
+		const string& get_ip() const;
+		const vector<char>& get_buffer() const;
 
 	private:
 		string _ip;

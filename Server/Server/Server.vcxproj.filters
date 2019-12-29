@@ -40,6 +40,9 @@
     <Filter Include="Source Files\core\service">
       <UniqueIdentifier>{4d81b528-95a5-4f9f-8352-201cf774be92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\item\login">
+      <UniqueIdentifier>{ff58f81d-6a3b-4224-97fe-84f0b5ff7a7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -68,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="src\core\service\service.cpp">
       <Filter>Source Files\core\service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\item\login\login_request.cpp">
+      <Filter>Source Files\core\item\login</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,5 +104,11 @@
     <ClInclude Include="src\core\service\service.h">
       <Filter>Source Files\core\service</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\item\login\login_request.h">
+      <Filter>Source Files\core\item\login</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

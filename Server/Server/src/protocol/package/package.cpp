@@ -26,12 +26,12 @@ namespace server::protocol
 		_buffer = buffer;
 	}
 
-	const string& package::get_ip()
+	const string& package::get_ip() const
 	{
 		return _ip;
 	}
 
-	const vector<char>& package::get_buffer()
+	const vector<char>& package::get_buffer() const
 	{
 		return _buffer;
 	}

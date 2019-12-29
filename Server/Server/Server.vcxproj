@@ -70,23 +70,23 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)int\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)binary\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)src;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)int\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)binary\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)src;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)int\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)binary\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)src;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)int\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)binary\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)src;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="src\core\core.cpp" />
     <ClCompile Include="src\core\item\item.cpp" />
+    <ClCompile Include="src\core\item\login\login_request.cpp" />
     <ClCompile Include="src\core\service\service.cpp" />
     <ClCompile Include="src\database\database.cpp" />
     <ClCompile Include="src\init\init.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="src\config\config.h" />
     <ClInclude Include="src\core\core.h" />
     <ClInclude Include="src\core\item\item.h" />
+    <ClInclude Include="src\core\item\login\login_request.h" />
     <ClInclude Include="src\core\service\service.h" />
     <ClInclude Include="src\database\database.h" />
     <ClInclude Include="src\init\init.h" />
@@ -171,7 +173,19 @@
     <ClInclude Include="src\protocol\package\package.h" />
     <ClInclude Include="src\protocol\protocol.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\boost.1.71.0.0\build\boost.targets" Condition="Exists('..\packages\boost.1.71.0.0\build\boost.targets')" />
+    <Import Project="..\packages\boost_serialization-vc142.1.71.0.0\build\boost_serialization-vc142.targets" Condition="Exists('..\packages\boost_serialization-vc142.1.71.0.0\build\boost_serialization-vc142.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\boost.1.71.0.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.71.0.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_serialization-vc142.1.71.0.0\build\boost_serialization-vc142.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_serialization-vc142.1.71.0.0\build\boost_serialization-vc142.targets'))" />
+  </Target>
 </Project>

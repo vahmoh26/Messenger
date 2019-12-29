@@ -2,7 +2,7 @@
 
 #include <database/database.h>
 
-#include "../item/item.h"
+#include "../item/login/login_request.h"
 
 namespace server::core
 {

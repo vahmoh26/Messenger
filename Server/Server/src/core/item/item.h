@@ -4,6 +4,8 @@
 
 namespace server::core
 {
+	using namespace std;
+
 	class item
 	{
 	public:
@@ -20,14 +22,17 @@ namespace server::core
 		~item();
 
 		void set_type(type type);
+		void set_ip(const string& ip);
 
 		type get_type();
+		const string& get_ip() const;
 
 		bool valid();
 
 		virtual protocol::package to_package();
 
-	private:
+	protected:
 		type _type;
+		string _ip;
 	};
 }

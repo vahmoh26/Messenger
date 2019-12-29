@@ -25,9 +25,19 @@ namespace server::core
 		_type = type;
 	}
 
+	void item::set_ip(const string& ip)
+	{
+		_ip = ip;
+	}
+
 	item::type item::get_type()
 	{
 		return _type;
+	}
+
+	const string& item::get_ip() const
+	{
+		return _ip;
 	}
 
 	bool item::valid()
