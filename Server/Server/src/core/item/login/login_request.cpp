@@ -2,11 +2,9 @@
 
 #include <sstream>
 
+#include <boost/iostreams/stream.hpp>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
-
-#include <boost/iostreams/device/array.hpp>
-#include <boost/iostreams/stream.hpp>
 
 namespace server::core
 {
@@ -14,15 +12,17 @@ namespace server::core
 
 	login_request::login_request()
 	{
+		_type = type::login;
 	}
 
-	login_request::login_request(const string& username, const string& password)
+	login_request::login_request(const string& ip, const string& username, const string& password) : login_request()
 	{
+		set_ip(ip);
 		set_username(username);
 		set_password(password);
 	}
 
-	login_request::login_request(const protocol::package& package)
+	login_request::login_request(const protocol::package& package) : login_request()
 	{
 		iostreams::array_source array_source(package.get_buffer().data(), package.get_buffer().size());
 		iostreams::stream<boost::iostreams::array_source> stream(array_source);

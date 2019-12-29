@@ -193,7 +193,18 @@ namespace server::core
 				while (!packages.empty())
 				{
 					request_items_mutex.lock();
-					request_items.push(item(packages.front()));
+
+					switch (item(packages.front()).get_type())
+					{
+					case item::type::login:
+						request_items.push(*dynamic_cast<item*>(&login_request(packages.front())));
+						break;
+					case item::type::logout:
+						break;
+					default:
+						break;
+					}
+
 					request_items_mutex.unlock();
 
 					packages.pop();

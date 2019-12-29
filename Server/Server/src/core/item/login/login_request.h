@@ -10,7 +10,7 @@ namespace server::core
 	{
 	public:
 		login_request();
-		login_request(const string& username, const string& password);
+		login_request(const string& ip, const string& username, const string& password);
 		login_request(const protocol::package& package);
 		~login_request();
 
